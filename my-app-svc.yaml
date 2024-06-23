@@ -1,4 +1,6 @@
-apiVersion: apps/v1
+apiVersion: v1 
+#kind: Service resource does not belong to the apps/v1 API group
+#belong to apiVersion: v1
 kind: Service
 metadata: 
   name: my-app-svc
