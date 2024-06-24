@@ -9,6 +9,6 @@ metadata:
 spec:
   containers:
   - name: mavenwebapp-ctr
-    image: nginx
+    image: dockerhandson/maven-web-application:1
     ports:
     - containerPort: 80
