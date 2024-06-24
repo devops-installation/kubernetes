@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: pod
+metadata:
+  name: mavenwebapp
+  labels: 
+    app: mavenwebapp
+  namespace: test-ns
+
+spec:
+  containers:
+  - name: mavenwebapp-ctr
+    image: nginx
+    
