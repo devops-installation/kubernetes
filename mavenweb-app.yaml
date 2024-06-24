@@ -11,4 +11,4 @@ spec:
   - name: mavenwebapp-ctr
     image: nginx
     ports:
-      containerPort: 8080
+    - containerPort: 8080
