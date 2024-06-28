@@ -8,6 +8,6 @@ metadata:
 spec:
   containers:
   - name: nodeapp-ctr
-    image:
+    image: node
     port:
     - containerPort: 9000
