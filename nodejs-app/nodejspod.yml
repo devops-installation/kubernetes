@@ -8,6 +8,6 @@ metadata:
 spec:
   containers:
   - name: nodeapp-ctr
-    image: node
-    port:
-    - containerPort: 9000
+    image: dockerhandson/node-app-mss:1
+    ports:
+    - containerPort: 9981
