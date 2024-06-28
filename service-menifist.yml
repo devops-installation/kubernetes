@@ -13,7 +13,7 @@ metadata:
   labels:
     app: mavenapp
 spec:
-  container:
+  containers:
   - name: mavenapp-ctr
     image: dockerhandson/maven-webapplication:1
     ports:
@@ -32,7 +32,7 @@ spec:
     app: mavenapp
   ports:
   - port: 80 # Clusterip
-    targetport: 8080  #containerip
+    targetPort: 8080  #containerip
 
   
 
