@@ -17,7 +17,7 @@ spec:
   - name: mavenapp-ctr
     image: dockerhandson/maven-webapplication:1
     ports:
-    - containerport: 8080
+    - containerPort: 8080
 
 
 ---
