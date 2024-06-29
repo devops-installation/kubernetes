@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: mavenapp
+  namespace: test-ns
+  labels:
+    app: mavenapp
+spec:
+  containers:
+    - name: mavenapp-ctr
+      image: dockerhandson/maven-webapplication:1
+      ports:
+        containerPort: 8080
+
+---
+apiVersion: v1
+kind: Service 
+metadata:
+  name: maven-nodport-svc
+  namespace: test-ns 
+
+spec:
+  type: Nodeport
+  selector: 
+    app: mavenapp
+  ports:
+  - port: 80  # clusterport
+    targetPort: 8080 # container port
+    #nodePort: 30033 #range of port 30000 to 32760 
