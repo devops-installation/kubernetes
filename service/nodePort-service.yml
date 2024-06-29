@@ -24,4 +24,4 @@ spec:
   ports:
   - port: 80  # clusterport
     targetPort: 8080 # container port
-    #nodePort: 30033 #range of port 30000 to 32760 
+    nodePort: 30033 #range of port 30000 to 32760 
