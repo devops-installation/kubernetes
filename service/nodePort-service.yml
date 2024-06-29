@@ -7,10 +7,10 @@ metadata:
     app: mavenapp
 spec:
   containers:
-    - name: mavenapp-ctr
-      image: dockerhandson/maven-webapplication:1
-      ports:
-        containerPort: 8080
+  - name: mavenapp-ctr
+    image: dockerhandson/maven-webapplication:1
+    ports:
+      containerPort: 8080
 
 ---
 apiVersion: v1
