@@ -5,3 +5,22 @@ metadata:
   name: dev
   labels:
     ns: dev
+---
+#Pod
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: testpod
+  namespace: dev
+  labels:
+    app: testpod
+spec:
+  containers:
+  - name: nginx-ctr
+    image: nginx
+    ports:
+    - containerPorts: 80
+---
+# ClusterIP Service
+#apiVersion: v1
+#kind:
