@@ -6,7 +6,6 @@ metadata:
   labels:
     ns: dev
 ---
-#Pod
 apiVersion: v1
 kind: Pod
 metadata: 
@@ -17,10 +16,10 @@ metadata:
 spec:
   containers:
   - name: nginx-ctr
-    image: nginx
+    image: nginx:latest
     ports:
     - containerPorts: 80
-
-# ClusterIP Service
-#apiVersion: v1
-#kind:
+  - name: nodeapp-ctr
+    image: dockerhandson/node-app-mss:1
+    ports:
+    - containerPort: 9981
