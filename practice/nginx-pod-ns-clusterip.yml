@@ -20,7 +20,7 @@ spec:
     image: nginx
     ports:
     - containerPorts: 80
----
+
 # ClusterIP Service
 #apiVersion: v1
 #kind:
