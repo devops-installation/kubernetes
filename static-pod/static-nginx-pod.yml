@@ -1,0 +1,14 @@
+#place this file in path: /etc/kubernetes/manifests/static-nginx-pod.yml
+apiVersion: v1
+kind: Pod 
+metadata: 
+  name: static-nginx 
+  labels: 
+    app: static-nginx
+spec:
+  containers:
+  - name: static-nginx-ctr
+    image: nginx
+    ports:
+    - containerPort: 80
+    
