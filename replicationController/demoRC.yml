@@ -4,8 +4,8 @@ metadata:
   name: demorc
   namespace: test-ns
 spec:
-  replicas: 2
-  selectors: 
+  replicas: 3
+  selector: 
     app: demorc
   template: 
     metadata:
