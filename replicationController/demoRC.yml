@@ -1,23 +1,23 @@
 apiVersion: v1
-kind: ReplicationController 
-metadata: 
+kind: ReplicationController
+metadata:
   name: demorc
   namespace: test-ns
 spec:
-  replicas: 3
-  selector: 
+  replicas: 2
+  selector:
     app: demorc
-  template: 
+  template:
     metadata:
       name: demorcpod
       labels:
         app: demorc
-      spec:
-        containers:
-        - name: mavenapp-ctr
+    spec:
+      containers:
+        - name: corporateraasta-live-ctr
           image: shubham808/corporateraasta-live
           ports:
-          - containerPort: 5000
+            - containerPort: 5000
 ---
 apiVersion: v1
 kind: Service
