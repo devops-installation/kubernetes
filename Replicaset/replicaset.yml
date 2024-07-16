@@ -5,7 +5,6 @@ metadata:
   namespace: test
   labels:
   app: nodejs-rs
-  env: test
 spec:
   replicas: 2
   selector:
@@ -18,7 +17,6 @@ spec:
       labels: 
         app: nodejsapp
         env: test
-
     spec:
       containers:
       - name: nodejsapp-ctr
@@ -33,7 +31,6 @@ metadata:
   namespace: test
   labels:
   app: nodejs-rs-svc
-  env: test
 spec:
   type: NodePort
   selector:
