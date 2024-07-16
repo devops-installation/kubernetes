@@ -8,15 +8,14 @@ spec:
   selector:
     matchLabels: 
       app: nodejsapp
-  template: #pod
+  template: # pod template
     metadata:
-      name: nodeapppod
       labels: 
         app: nodejsapp
     spec:
       containers:
       - name: nodejsapp-ctr
-        image: shubham808/rh-fe-k8:latest
+        image: shubham808/rh-fe-k8
         ports:
         - containerPort: 8080
 ---
@@ -26,7 +25,7 @@ metadata:
   name: nodejs-rs-svc
   namespace: test
   labels:
-  app: nodejs-rs-svc
+    app: nodejs-rs-svc
 spec:
   type: NodePort
   selector:
@@ -35,4 +34,3 @@ spec:
   - port: 80
     targetPort: 8080
     nodePort: 31002
-  
