@@ -10,13 +10,11 @@ spec:
   selector:
     matchLabels: 
       app: nodejsapp
-      env: test
   template: #pod
     metadata:
       name: nodeapppod
       labels: 
         app: nodejsapp
-        env: test
     spec:
       containers:
       - name: nodejsapp-ctr
