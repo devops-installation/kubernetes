@@ -36,6 +36,6 @@ spec:
   selector:
     app: logging
   ports:
-  - port: 24224
+  - port: 80
     targetPort: 24224
     nodePort: 31004
