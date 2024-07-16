@@ -3,8 +3,6 @@ kind: ReplicaSet
 metadata:
   name: nodejs-rs
   namespace: test
-  labels:
-  app: nodejs-rs
 spec:
   replicas: 2
   selector:
