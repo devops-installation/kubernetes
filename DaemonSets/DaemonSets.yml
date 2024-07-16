@@ -29,8 +29,6 @@ kind: Service
 metadata:
   name: logging-ds-svc
   namespace: test
-  labels:
-    app: logging
 spec:
   type: NodePort
   selector:
