@@ -4,7 +4,7 @@ metadata:
   name: logging-ds
   namespace: test
   labels:
-  app: logging
+    app: logging
 spec: 
   selector:
     matchLabels:
