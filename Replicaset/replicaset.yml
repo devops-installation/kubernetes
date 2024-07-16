@@ -3,16 +3,22 @@ kind: ReplicaSet
 metadata:
   name: nodejs-rs
   namespace: test
+  labels:
+  app: nodejs-rs
+  env: test
 spec:
   replicas: 2
   selector:
     matchLabels: 
       app: nodejsapp
+      env: test
   template: #pod
     metadata:
       name: nodeapppod
       labels: 
         app: nodejsapp
+        env: test
+
     spec:
       containers:
       - name: nodejsapp-ctr
@@ -25,6 +31,9 @@ kind: Service
 metadata:
   name: nodejs-rs-svc
   namespace: test
+  labels:
+  app: nodejs-rs-svc
+  env: test
 spec:
   type: NodePort
   selector:
