@@ -7,8 +7,6 @@ metadata:
     app: rh-fe-app
 spec:
   replicas: 3
-  stategy:
-    type: Recreate
   selector: 
     matchLabels:
       app: rh-fe-app
@@ -35,8 +33,6 @@ spec:
     app: rh-fe-app
   ports:
   - protocol: TCP
-  port: 80
-  targetPort: 8080
-  nodePort: 30001
-
-
+    port: 80
+    targetPort: 8080
+    nodePort: 30001
