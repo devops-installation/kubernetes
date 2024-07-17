@@ -18,9 +18,9 @@ spec:
     spec: 
       containers:
       - name: rh-fe-app-ctr
-        image: shubham808/retailhub-frontend:0.0.1
+        image: shubham808/chaperone-admin-live
         ports:
-        - containerPort: 8080
+        - containerPort: 5000
 ---
 apiVersion: v1 
 kind: Service 
