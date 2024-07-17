@@ -7,7 +7,7 @@ metadata:
     app: rh-fe-app
 spec:
   replicas: 3
-    strategy:
+  strategy:
     type: Recreate
   selector: 
     matchLabels:
