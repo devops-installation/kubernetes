@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment 
 metadata:
-  name: rh-deployment-RU
+  name: rh-deployment-ru
   namespace: test
 spec:
   replicas: 5
@@ -14,15 +14,15 @@ spec:
   minReadySeconds: 30
   selector:
     matchLabels:
-      app: rh-app-RU
+      app: rh-app-ru
   template:
     metadata:
-      name: rh-RU-pod
+      name: rh-ru-pod
       labels:
-        app: rh-app-RU
+        app: rh-app-ru
     spec:
       containers:
-      - name: rh-app-RU-ctr
+      - name: rh-app-ru-ctr
         image: dockerhandson/java-web-app:1
         ports:
         - containerPort: 8080
@@ -30,12 +30,12 @@ spec:
 apiVersion: v1
 kind: Service 
 metadata:
-  name: rh-RU-svc
+  name: rh-ru-svc
   namespace: test
 spec: 
   selector:
     matchLabels:
-      app: rh-app-RU
+      app: rh-app-ru
   type: NodePort
   ports:
   - port: 80
