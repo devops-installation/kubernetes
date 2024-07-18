@@ -34,7 +34,7 @@ metadata:
   namespace: test
 spec: 
   selector:
-    matchLablesL:
+    matchLabels:
       app: rh-app-RU
   type: NodePort
   ports:
