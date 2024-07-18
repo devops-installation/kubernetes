@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment 
+metadata:
+  name: rh-deployment-RU
+  namespace: test
+spec:
+  replicas: 5
+  revisionHistoryLimit: 4
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurg: 2
+  minReadySeconds: 30
+  selector:
+    matchLablesL:
+      app: rh-app-RU
+  templete:
+    metadata:
+      name: rh-RU-pod
+      labels:
+        app: rh-app-RU
+    spec:
+      containers:
+      - name: rh-app-RU-ctr
+        image: dockerhandson/java-web-app:1
+        ports:
+        - containerPort: 8080
+---
+apiVersion: apps/v1
+kind: Service 
+metadata:
+  name: rh-RU-svc
+  namespace: test
+spec: 
+  selector:
+    matchLablesL:
+      app: rh-app-RU
+  type: NodePort
+  ports:
+  - port: 80
+    targetPort: 8080
+    nodePort: 31002
+
+
+
+
+
+
+
+
+
+
