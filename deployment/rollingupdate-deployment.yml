@@ -10,12 +10,12 @@ spec:
     type: RollingUpdate
     rollingUpdate:
       maxUnavailable: 1
-      maxSurg: 2
+      maxSurge: 2
   minReadySeconds: 30
   selector:
-    matchLablesL:
+    matchLabels:
       app: rh-app-RU
-  templete:
+  template:
     metadata:
       name: rh-RU-pod
       labels:
@@ -27,7 +27,7 @@ spec:
         ports:
         - containerPort: 8080
 ---
-apiVersion: apps/v1
+apiVersion: v1
 kind: Service 
 metadata:
   name: rh-RU-svc
