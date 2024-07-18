@@ -23,7 +23,8 @@ spec:
     spec:
       containers:
       - name: rh-app-ru-ctr
-        image: dockerhandson/java-web-app:1
+        #image: dockerhandson/java-web-app:1
+        image: shubham808/retailhub-frontend:0.0.1
         ports:
         - containerPort: 8080
 ---
