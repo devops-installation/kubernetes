@@ -4,7 +4,7 @@ metadata:
   name: rh-deployment-ru
   namespace: test
 spec:
-  replicas: 5
+  replicas: 3
   revisionHistoryLimit: 4
   strategy:
     type: RollingUpdate
