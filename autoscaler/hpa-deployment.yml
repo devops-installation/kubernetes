@@ -44,6 +44,7 @@ apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler
 metadata:
   name: hpadeployment
+  namespace: dev
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
