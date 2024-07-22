@@ -7,11 +7,11 @@ spec:
   replicas: 2
   selector:
     matchLabels:
-      app:  hpapod
+      app: hpapod
   template:
     metadata:
       labels:
-        app:  hpapod
+        app: hpapod
     spec:
       containers:
       - name: hpa-ctr
@@ -27,11 +27,11 @@ spec:
         - containerPort: 80
 ---
 apiVersion: v1
-kind: Service 
+kind: Service
 metadata:
   name: hpa-svc
   namespace: dev
-spec: 
+spec:
   selector:
     app: hpapod
   type: NodePort
