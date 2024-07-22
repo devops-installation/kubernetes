@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hpadeployment
+  name: hpaapp
   namespace: dev
 spec:
   replicas: 2
@@ -39,4 +39,32 @@ spec:
   - port: 80
     targetPort: 80
     nodePort: 31006
-
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler 
+metadata:
+  name: hpadeployment
+  namespace: dev
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: hpaapp
+  minReplicas: 2
+  maxReplicas: 5
+  metrics:  
+  - type: resource
+    resource:
+      name: cpu 
+      target: 
+        type: Utilization
+        averageutilization: 40
+  - type: resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 40
+  
+    
+    
