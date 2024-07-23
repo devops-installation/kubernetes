@@ -27,6 +27,13 @@ spec:
         image: shubham808/retailhub-frontend:0.0.1
         ports:
         - containerPort: 8080
+        resources:
+          requests:
+            cpu: 200m
+            memory: 100Mi
+          limits:
+            cpu: 200m
+            memory: 100Mi
 ---
 apiVersion: v1
 kind: Service 
