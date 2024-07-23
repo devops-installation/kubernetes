@@ -21,7 +21,7 @@ spec:
         image: trainwithshubham/flaskapp
         env: 
         - name: MYSQL_HOST
-          value: "mysql"
+          value: "mysql host"
         - name: MYSQL_USER
           value: "root"     
         - name: MYSQL_PASSWORD
