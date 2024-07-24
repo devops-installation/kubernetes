@@ -41,7 +41,7 @@ metadata:
 spec:
   type: NodePort
   selector:
-    app: spring-boot-app
+    app: spring-boot-mongo:1
   ports:
   - port: 80
     targetPort: 8080
