@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: spring-boot-ctr
-        image: dockerhandson/spring-boot-app:1
+        image: dockerhandson/spring-boot-mongo:1
         resources:
           requests:
             memory: "100Mi"
@@ -41,7 +41,7 @@ metadata:
 spec:
   type: NodePort
   selector:
-    app: spring-boot-mongo:1
+    app: spring-boot-app
   ports:
   - port: 80
     targetPort: 8080
