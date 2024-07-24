@@ -20,7 +20,7 @@ spec:
           ports:
           - containerPort: 27017
           env:
-          - name: MONGO_INITDBMONGO_INITDB_ROOT_USERNAME
+          - name: MONGO_INITDB_ROOT_USERNAME
             value: devdb
           - name: MONGO_INITDB_ROOT_PASSWORD
             value: shubham94
