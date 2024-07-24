@@ -4,7 +4,7 @@ metadata:
   name: mongodb
   namespace: test
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: mongo
@@ -24,6 +24,13 @@ spec:
             value: devdb
           - name: MONGO_INITDB_ROOT_PASSWORD
             value: shubham94
+          volumeMounts:
+          - name: mongodb-data
+            mountPath: /data/db
+      volumes:
+      - name: mongodb-data
+        hostPath:
+          path: /mongodata
 ---
 apiVersion: v1
 kind: Service
