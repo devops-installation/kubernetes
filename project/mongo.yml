@@ -25,12 +25,13 @@ spec:
           - name: MONGO_INITDB_ROOT_PASSWORD
             value: shubham94
           volumeMounts:
-          - name: mongodb-data
+          - name: mongodb-nfs-vol
             mountPath: /data/db
       volumes:
-      - name: mongodb-data
-        hostPath:
-          path: /mongodata
+      - name: mongodb-nfs-vol
+        nfs:
+          server: 3.6.95.39
+          path: /mnt/nfs_share
 ---
 apiVersion: v1
 kind: Service
