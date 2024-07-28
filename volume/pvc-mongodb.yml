@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: Deployment 
+kind: Deployment
 metadata:
   name: mongodb
   namespace: dev
@@ -7,13 +7,12 @@ spec:
   replicas: 1
   revisionHistoryLimit: 4
   strategy:
-    type: Recreate 
+    type: Recreate
   selector:
-    matchLables:
-    app: mongodb
+    matchLabels:
+      app: mongodb
   template:
     metadata:
-      name: mongodb-pod
       labels:
         app: mongodb
     spec:
@@ -32,32 +31,31 @@ spec:
             cpu: "200m"
             memory: "100Mi"
           limits:
-          cpu:  "400m"
-          memory: "200Mi"
+            cpu: "400m"
+            memory: "200Mi"
         volumeMounts:
         - name: mongodb-pvc-vol
-          mountPath:
+          mountPath: /data/db
       volumes:
       - name: mongodb-pvc-vol
         persistentVolumeClaim:
           claimName: mongo-pvc
 ---
-apiVersion: v1 
-kind: Service 
+apiVersion: v1
+kind: Service
 metadata:
   name: mongodb-svc
   namespace: dev
 spec:
   type: ClusterIP
   selector:
-    matchLabels:
-      app: mongodb
+    app: mongodb
   ports:
   - port: 27017
     targetPort: 27017
 ---
-apiVersion: v1 
-kind: PersistentVolumeClaim 
+apiVersion: v1
+kind: PersistentVolumeClaim
 metadata:
   name: mongo-pvc
   namespace: dev
@@ -65,9 +63,8 @@ spec:
   resources:
     requests:
       storage: 1Gi
-      #storage: 500Mi
   accessModes:
-  - ReadReadWriteOnce
+  - ReadWriteOnce
 
 
             
