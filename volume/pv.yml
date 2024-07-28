@@ -1,21 +1,12 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: nfs-pv 
-  namespace: dev 
+  name: nfs-pv
 spec:
   capacity:
     storage: 2Gi
   accessModes:
-  - ReadwriteMany
+  - ReadWriteMany
   nfs:
     server: 3.6.95.39
     path: /mnt/nfs_share
-
-
-
-
-
-
-
-
