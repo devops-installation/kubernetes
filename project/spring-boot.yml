@@ -31,6 +31,14 @@ spec:
           value: devdb
         - name: MONGO_DB_PASSWORD
           value: shubham94
+      #   volumeMounts:
+      #   - name: app-nfs-vol
+      #     mountPath: 
+      # volumes:
+      # - name: app-nfs-vol
+      #   nfs:
+      #     server: 3.6.95.39
+      #     path: /mnt/nfs_app_vol
         
 ---
 apiVersion: v1
