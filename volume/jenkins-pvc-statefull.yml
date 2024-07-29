@@ -6,24 +6,23 @@ metadata:
 spec:
   replicas: 1
   revisionHistoryLimit: 2
-  strategy: 
+  strategy:
     type: Recreate
   selector:
     matchLabels:
       app: jenkins
   template:
     metadata:
-      name: jenkins-pod
       labels:
         app: jenkins
     spec:
       containers:
       - name: jenkins-ctr
-        image: shubham808/jenkins:latest
+        image: shubham808/jenkins:champ
         resources:
           requests:
-            memory: "128Mi"
-            cpu: "200m"
+            memory: "500Mi"
+            cpu: "50000m"
           limits:
             memory: "1056Mi"
             cpu: "1000m"
@@ -43,12 +42,11 @@ metadata:
   name: jenkins-pvc
   namespace: devops
 spec:
+  accessModes:
+  - ReadWriteOnce
   resources:
     requests:
       storage: 1Gi
-  #volumeMode: Filesystem
-  accessModes:
-  - ReadWriteOnce
 ---
 apiVersion: v1
 kind: Service
@@ -63,9 +61,3 @@ spec:
   - port: 8080
     targetPort: 8080
     nodePort: 30012
-
-
-
-
-
-
