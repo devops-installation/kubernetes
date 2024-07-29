@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: jenkins-ctr
-        image: dockerhandson/java-web-app:1
+        image: shubham808/jenkins:latest
         resources:
           requests:
             memory: "500Mi"
@@ -58,6 +58,6 @@ spec:
   selector:
     app: jenkins
   ports:
-  - port: 80
+  - port: 80 #assign 8080 first but not work later work with 80
     targetPort: 8080
     nodePort: 30012
