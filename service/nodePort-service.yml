@@ -2,13 +2,13 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: mavenapp
-  namespace: test-ns
+  namespace: test
   labels:
     app: mavenapp
 spec:
   containers:
   - name: mavenapp-ctr
-    image: dockerhandson/maven-webapplication:1
+    image: shubham808/jenkins:champ
     ports:
     - containerPort: 8080  # Correct indentation
 ---
@@ -16,7 +16,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: maven-nodport-svc
-  namespace: test-ns
+  namespace: test
 spec:
   type: NodePort
   selector:

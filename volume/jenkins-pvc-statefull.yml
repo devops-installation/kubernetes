@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: jenkins-ctr
-        image: shubham808/jenkins:latest
+        image: shubham808/jenkins:champ
         resources:
           requests:
             memory: "500Mi"
