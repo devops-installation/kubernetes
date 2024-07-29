@@ -41,6 +41,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: jenkins-pvc
+  namespace: devops
 spec:
   resources:
     requests:
