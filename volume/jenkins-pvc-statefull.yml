@@ -47,7 +47,7 @@ spec:
       storage: 1Gi
   #volumeMode: Filesystem
   accessModes:
-    - ReadWriteOnce
+  - ReadWriteOnce
 ---
 apiVersion: v1
 kind: Service
