@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jenkins
+  namespace: devops
+spec:
+  replicas: 1
+  revisionHistoryLimit: 2
+  strategy: 
+    type: Recreate
+  selector:
+    matchLabels:
+      app: jenkins
+  template:
+    metadata:
+      name: jenkins-pod
+      labels:
+        app: jenkins
+    spec:
+      containers:
+      - name: jenkins-ctr
+        image: shubham808/jenkins:latest
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "200m"
+          limits:
+            memory: "1056Mi"
+            cpu: "1000m"
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - name: jenkins-data
+          mountPath: /var/jenkins_home
+      volumes:
+      - name: jenkins-data
+        persistentVolumeClaim:
+          claimName: jenkins-pvc
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: jenkins-pvc
+spec:
+  resources:
+    requests:
+      storage: 1Gi
+  #volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: jenkins-svc
+  namespace: devops
+spec:
+  type: NodePort
+  selector:
+    app: jenkins
+  ports:
+  - port: 8080
+    targetPort: 8080
+    nodePort: 30012
+
+
+
+
+
+

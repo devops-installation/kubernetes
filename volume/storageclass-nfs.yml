@@ -92,12 +92,12 @@ spec:
             - name: NFS_SERVER # do not change
               value: 3.6.95.39 # Ip of the NFS SERVER
             - name: NFS_PATH # do not change
-              value: /mnt/nfs_share # path to nfs directory setup
+              value: /mnt/nfs_share # change path to nfs directory setup
       volumes:
        - name: nfs-provisioner-v # same as volumemouts name
          nfs:
-           server: 3.6.95.39
-           path: /mnt/nfs_share   
+           server: 3.6.95.39  # change nfs server IP
+           path: /mnt/nfs_share  # change path
 ---
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
@@ -105,6 +105,6 @@ metadata:
   name: nfs-storageclass # IMPORTANT pvc needs to mention this name
   annotations:
     storageclass.kubernetes.io/is-default-class: "true"
-provisioner: nfs-provisioner # name can be anything
+provisioner: nfs-provisioner # name same as a ENV value- PROVISIONER_NAME
 parameters:
   archiveOnDelete: "false"
