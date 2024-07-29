@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: jenkins-ctr
-        image: jenkins/jenkins
+        image: dockerhandson/java-web-app:1
         resources:
           requests:
             memory: "500Mi"
@@ -46,7 +46,7 @@ spec:
   - ReadWriteOnce
   resources:
     requests:
-      storage: 1Gi
+      storage: 2Gi
 ---
 apiVersion: v1
 kind: Service
