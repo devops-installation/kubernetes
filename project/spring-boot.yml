@@ -1,3 +1,15 @@
+apiVersion: v1 
+kind: configMap 
+metadata:
+  name: spring-configmap
+  namespace: devdb
+data:
+  mongohostname: mongo-svc.dev.svc.cluster.local
+  mongousername: devdb
+  mongodbpasswd: shubham94
+  
+
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -26,8 +38,8 @@ spec:
         - containerPort: 8080
         env:
         - name: MONGO_DB_HOSTNAME
-          value: mongo-svc.test.svc.cluster.local
-        - name: MONGO_DB_USERNAME
+          value: mongo-svc.dev.svc.cluster.local #FQDN or clusterIP 
+        - name: MONGO_DB_USERNAME 
           value: devdb
         - name: MONGO_DB_PASSWORD
           value: shubham94
