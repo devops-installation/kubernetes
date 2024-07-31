@@ -1,8 +1,20 @@
+# apiVersion: v1 
+# kind: configMap 
+# metadata:
+#   name: spring-configmap
+#   namespace: dev
+# data:
+#   mongohostname: mongo-svc.dev.svc.cluster.local
+#   mongousername: devdb
+#   mongodbpasswd: shubham94
+  
+
+# ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: spring-boot-deplyment
-  namespace: test
+  namespace: dev
 spec:
   selector:
     matchLabels:
@@ -26,9 +38,9 @@ spec:
         - containerPort: 8080
         env:
         - name: MONGO_DB_HOSTNAME
-          value: mongo-svc.test.svc.cluster.local #FQDN or clusterIP 
+          value: mongo-svc.dev.svc.cluster.local #FQDN or clusterIP 
         - name: MONGO_DB_USERNAME 
-          value: testdb
+          value: devdb
         - name: MONGO_DB_PASSWORD
           value: shubham94
       #   volumeMounts:
@@ -39,13 +51,12 @@ spec:
       #   nfs:
       #     server: 3.6.95.39
       #     path: /mnt/nfs_app_vol
-        
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: spring-svc
-  namespace: test
+  namespace: dev
 spec:
   type: NodePort
   selector:
@@ -54,4 +65,3 @@ spec:
   - port: 80
     targetPort: 8080
     nodePort: 31017
-

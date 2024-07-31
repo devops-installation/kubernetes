@@ -32,7 +32,7 @@ spec:
       - name: mongodb-nfs-vol
         nfs:
           server: 3.6.95.39
-          path: /mnt/nfs_share
+          path: /mnt/nfs_share/mongodb
 ---
 apiVersion: v1
 kind: Service
