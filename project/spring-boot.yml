@@ -28,7 +28,7 @@ spec:
         - name: MONGO_DB_HOSTNAME
           value: mongo-svc.test.svc.cluster.local #FQDN or clusterIP 
         - name: MONGO_DB_USERNAME 
-          value: testdb
+          value: devdb
         - name: MONGO_DB_PASSWORD
           value: shubham94
       #   volumeMounts:
@@ -39,7 +39,6 @@ spec:
       #   nfs:
       #     server: 3.6.95.39
       #     path: /mnt/nfs_app_vol
-        
 ---
 apiVersion: v1
 kind: Service
