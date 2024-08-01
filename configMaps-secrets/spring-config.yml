@@ -4,7 +4,7 @@ metadata:
   name: spring-configmap
   namespace: dev
 data:
-  MONGO_DB_HOSTNAME: mongo-svc.test.svc.cluster.local
+  MONGO_DB_HOSTNAME: mongo-svc.dev.svc.cluster.local
   MONGO_DB_USERNAME: devdb
   MONGO_DB_PASSWORD: shubham94
 ---

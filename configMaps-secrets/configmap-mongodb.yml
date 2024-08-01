@@ -1,94 +1,84 @@
 apiVersion: v1 
-kind: ConfigMap 
+kind: apiVersion: v1
+kind: ConfigMap
 metadata:
-  name: mongodb-configmap
+  name: spring-configmap
   namespace: dev
 data:
-  mongodbuser: devdb
-  mongodbpasswd: shubham94
+  MONGO_INITDB_ROOT_USERNAME: devdb
+  MONGO_INITDB_ROOT_PASSWORD: shubham94
 ---
 apiVersion: apps/v1
-kind: Deployment
+kind: ReplicaSet 
 metadata:
   name: mongodb
   namespace: dev
 spec:
   replicas: 1
-  revisionHistoryLimit: 2
-  strategy:
-    type: Recreate
   selector:
     matchLabels:
-      app: mongodb
+      app: mongo
   template:
     metadata:
+      name: mongodb
       labels:
-        app: mongodb
+        app: mongo
     spec:
       containers:
-      - name: mongodb-ctr
-        image: mongo
-        ports:
-        - containerPort: 27017
-        env:
-          # - name: MONGO_INITDB_ROOT_USERNAME
-          #   value: devdb
+        - name: mongo-ctr
+          image: mongo
+          ports:
+          - containerPort: 27017
+          env:
           - name: MONGO_INITDB_ROOT_USERNAME
+            # value: devdb
             valueFrom:
               configMapKeyRef:
-                name: mongodb-configmap
-                key: mongodbuser
-          # - name: MONGO_INITDB_ROOT_PASSWORD
-          #   value: shubham94
+                name: spring-configmap
+                key: MONGO_INITDB_ROOT_USERNAME
           - name: MONGO_INITDB_ROOT_PASSWORD
+            # value: shubham94
             valueFrom:
               configMapKeyRef:
-                name: mongodb-configmap
-                key: mongodbpasswd 
-      #   resources:
-      #     requests:
-      #       cpu: "200m"
-      #       memory: "100Mi"
-      #     limits:
-      #       cpu: "400m"
-      #       memory: "200Mi"
-      #   volumeMounts:
-      #   - name: mongodb-pvc-vol
-      #     mountPath: /data/db
-      # volumes:
-      # - name: mongodb-pvc-vol
-      #   persistentVolumeClaim:
-      #     claimName: mongo-pvc
+                name: spring-configmap
+                key: MONGO_INITDB_ROOT_PASSWORD
+          volumeMounts:
+          - name: mongodb-nfs-vol
+            mountPath: /data/db
+      volumes:
+      - name: mongodb-nfs-vol
+        persistentVolumeClaim:
+          claimName: mongo-pvc
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: mongodb-svc
+  name: mongo-svc
   namespace: dev
 spec:
   type: ClusterIP
   selector:
-    app: mongodb
+    app: mongo
   ports:
   - port: 27017
     targetPort: 27017
-# ---
-# apiVersion: v1
-# kind: PersistentVolumeClaim
-# metadata:
-#   name: mongo-pvc
-#   namespace: dev
-# spec:
-#   resources:
-#     requests:
-#       storage: 1Gi
-#   accessModes:
-#   - ReadWriteMany
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mongo-pvc
+  namespace: dev
+spec:
+  resources:
+    requests:
+      storage: 1Gi
+  accessModes:
+  - ReadWriteMany
 # ---
 # apiVersion: v1
 # kind: PersistentVolume
 # metadata:
-#   name: mongodb-pv-dev
+#   name: mongodb-pv
 # spec:
 #   capacity:
 #     storage: 1Gi
@@ -96,7 +86,4 @@ spec:
 #   - ReadWriteMany
 #   nfs:
 #     server: 3.6.95.39
-#     path: /mnt/nfs_share
-
-
-
+#     path: /mnt/nfs_share/mongodb
