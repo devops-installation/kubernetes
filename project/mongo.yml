@@ -24,7 +24,6 @@ spec:
             value: devdb
           - name: MONGO_INITDB_ROOT_PASSWORD
             value: shubham94
-    
           volumeMounts:
           - name: mongodb-nfs-vol
             mountPath: /data/db
