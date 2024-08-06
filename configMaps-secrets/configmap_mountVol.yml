@@ -1,3 +1,18 @@
+apiVersion: v1 
+kind: ConfigMap 
+metadata: 
+  name: java-configmap-vol
+  namespace: dev 
+data:
+  tomcat-users.xml: |  # Multiline string not key-value
+  <?xml version='1.0' encoding='utf-8'?>
+  <tomcat-users xmlns="http://tomcat.apache.org/xml"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://tomcat.apache.org/xml tomcat-users.xsd"
+              version="1.0">
+  <user username="shubham" password="shubham@94" roles="admin-gui,manager-gui"/>
+  </tomcat-users>
+---
 apiVersion: apps/v1
 kind: Deployment 
 metadata:
@@ -20,12 +35,24 @@ spec:
         resources:
           requests:
             memory: "256Mi"
-            cpu: "200m"
+            cpu: "500m"
           limits:
-            cpu: "300m"
+            cpu: "500m"
             memory: "256Mi"
         ports:
         - containerPort: 8080
+        volumeMounts:
+        - name: configmap-vol 
+          mountPath: "/usr/local/tomcat/conf/tomcat-users.xml"
+          subPath: "tomcat-users.xml"
+        
+      volumes:
+      - name: configmap-vol 
+        configMap:
+          name: java-configmap-vol
+          items:
+          - key: "tomcat-users.xml"
+            path: "tomcat-users.xml"
 ---
 apiVersion: v1
 kind: Service
