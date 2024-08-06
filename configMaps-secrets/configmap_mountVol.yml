@@ -10,7 +10,7 @@ data:
                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                 xsi:schemaLocation="http://tomcat.apache.org/xml tomcat-users.xsd"
                 version="1.0">
-    <user username="shubham" password="shubham@94" roles="admin-gui,manager-gui"/>
+    <user username="shubham" password="changeinpodv.1" roles="admin-gui,manager-gui"/>
     </tomcat-users>
 ---
 apiVersion: apps/v1
