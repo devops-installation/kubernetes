@@ -24,7 +24,7 @@ spec:
       - name: mavenapp-ctr
         image: shubham808/java-web-app:nexus
         ports:
-        - containerPort: 8080
+        - containerPort: 8081
 ---
 apiVersion: v1
 kind: Service 
@@ -38,7 +38,7 @@ spec:
   ports:
   - name: mavenapp-port
     port: 80
-    targetPort: 8080
+    targetPort: 8081
     nodePort: 30001
 
 
