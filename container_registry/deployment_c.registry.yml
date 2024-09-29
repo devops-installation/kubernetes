@@ -31,15 +31,12 @@ kind: Service
 metadata:
   name: mavenapp-svc-np
   namespace: dev
-  labels:
-    app: mavenapp
 spec:
   selector:
-    matchLabels:
-      app: mavenapp
+    app: mavenapp
   type: NodePort
   ports:
-  - name: mavenapp-port
+  - protocol: TCP
     port: 80
     targetPort: 8080
     nodePort: 30001
