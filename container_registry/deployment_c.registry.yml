@@ -22,8 +22,9 @@ spec:
     spec:
       containers:
       - name: mavenapp-ctr
-        #image: shubham808/java-web-app:nexus  # private repo 8081
-        image: nginx
+        image: shubham808/java-web-app:react
+        #image: shubham808/java-web-app:nexus  # private repo | port: 8081 | not working
+        #image: nginx
         ports:
         - containerPort: 80
       imagePullSecrets:
