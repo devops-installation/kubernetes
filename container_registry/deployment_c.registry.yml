@@ -23,9 +23,9 @@ spec:
       containers:
       - name: mavenapp-ctr
         #image: shubham808/java-web-app:nexus  # private repo 8081
-        image: dockerhandson/java-web-app:1
+        image: nginx
         ports:
-        - containerPort: 8080
+        - containerPort: 80
       imagePullSecrets:
       - name: mydockerhub
 ---
@@ -41,7 +41,7 @@ spec:
   ports:
   - name: mavenapp-port
     port: 80
-    targetPort: 8080
+    targetPort: 80
     nodePort: 30001
 
 
