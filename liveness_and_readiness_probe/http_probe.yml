@@ -9,17 +9,17 @@ spec:
   replicas: 1
   revisionHistoryLimit: 3
   strategy:
-    type: Recreate
+    type: Recreate  # "Recreate" will ensure that the old pod is deleted before creating a new one.
   selector:
     matchLabels:
       app: mavenapp
   template:
     metadata:
-      name: mavenapp-pod
-      #namespace: dev
-      labels: 
+      labels:  # Removed unused `name: mavenapp-pod`, as `metadata.labels` is sufficient for matching the pod.
         app: mavenapp
     spec:
+      imagePullSecrets:
+      - name: mydockerhub
       containers:
       - name: mavenapp-ctr
         image: shubham808/java-web-app:react
@@ -27,8 +27,6 @@ spec:
         #image: nginx
         ports:
         - containerPort: 80
-      imagePullSecrets:
-      - name: mydockerhub
         livenessProbe:
           httpGet:
             path: /
