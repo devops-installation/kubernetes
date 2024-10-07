@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mongo-statefulset
+  namespace: dev
+spec:
+  selector:
+    matchLabels:
+      app: mongo-stateful
+  serviceName: mongo-state-svc # Headless service name
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: mongo-stateful
+    spec:
+      terminationGracePeriodSeconds: 10 # period between delete pod
+      containers:
+      - name: mongodb-ctr
+        image: mongo
+        command:
+         - "mongod"
+         - "--bind_ip"
+         - "0.0.0.0"
+         - "--replSet"
+         - "MainRepSet"
+        resources: 
+          requests:
+            cpu: 200m
+            memory: 256Mi
+          limits:
+            cpu: 300m
+            memory: 512Mi
+        ports:
+        - containerPort: 27017
+        volumeMounts:
+        - name: mongodb-pvc-vol
+          mountPath: "/data/db"
+  volumeClaimTemplates:
+  - metadata:
+      name: mongodb-pvc-vol
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 1Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo-state-svc # servicename same as per above statefulset file
+  namespace: dev
+spec:
+  ClusterIP: None # Headless Service
+  selector:
+    app: mongo-stateful
+  ports:
+  - port: 27017
+    targetPort: 27017
+
