@@ -19,12 +19,12 @@ spec:
       - name: mongodb-ctr
         image: mongo
         command:
-         - "mongod"
-         - "--bind_ip"
-         - "0.0.0.0"
-         - "--replSet"
-         - "MainRepSet"
-        resources: 
+          - "mongod"
+          - "--bind_ip"
+          - "0.0.0.0"
+          - "--replSet"
+          - "MainRepSet"
+        resources:
           requests:
             cpu: 200m
             memory: 256Mi
@@ -32,30 +32,28 @@ spec:
             cpu: 300m
             memory: 512Mi
         ports:
-        - containerPort: 27017
+          - containerPort: 27017
         volumeMounts:
-        - name: mongodb-pvc-vol
-          mountPath: "/data/db"
+          - name: mongodb-pvc-vol
+            mountPath: "/data/db"
   volumeClaimTemplates:
-  - metadata:
-      name: mongodb-pvc-vol
-    spec:
-      accessModes: [ "ReadWriteOnce" ]
-      resources:
-        requests:
-          storage: 1Gi
+    - metadata:
+        name: mongodb-pvc-vol
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        resources:
+          requests:
+            storage: 1Gi
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: mongo-state-svc
+  name: mongo-state-svc # servicename same as per above statefulset file
   namespace: dev
 spec:
   ClusterIP: None # Headless Service
   selector:
     app: mongo-stateful
   ports:
-  - port: 27017
-    targetPort: 27017
-
-
+    - port: 27017
+      targetPort: 27017
