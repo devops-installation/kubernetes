@@ -41,7 +41,7 @@ metadata:
 spec:
   selector:
     app: springboot
-  port:
+  ports:
   - port: 80
     targetPort: 8080    
   type: NodePort
