@@ -19,11 +19,11 @@ spec:
       - name: mongodb-ctr
         image: mongo
         command:
-          - "mongod"
-          - "--bind_ip"
-          - "0.0.0.0"
-          - "--replSet"
-          - "MainRepSet"
+        - "mongod"
+        - "--bind_ip"
+        - "0.0.0.0"
+        - "--replSet"
+        - "MainRepSet"
         resources:
           requests:
             cpu: 200m
