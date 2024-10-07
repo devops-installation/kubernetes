@@ -43,6 +43,7 @@ spec:
     app: springboot
   ports:
   - port: 80
-    targetPort: 8080    
+    targetPort: 8080
+    nodePort: 30011    
   type: NodePort
 
