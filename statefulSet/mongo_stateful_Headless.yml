@@ -51,7 +51,7 @@ metadata:
   name: mongo-state-svc # servicename same as per above statefulset file
   namespace: dev
 spec:
-  ClusterIP: None # Headless Service
+  clusterIP: None # Headless Service
   selector:
     app: mongo-stateful
   ports:
