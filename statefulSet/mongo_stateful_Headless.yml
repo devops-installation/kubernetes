@@ -48,7 +48,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: mongo-state-svc # servicename same as per above statefulset file
+  name: mongo-state-svc
   namespace: dev
 spec:
   ClusterIP: None # Headless Service
@@ -57,4 +57,5 @@ spec:
   ports:
   - port: 27017
     targetPort: 27017
+
 
