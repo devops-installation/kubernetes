@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: springboot-ctr
-        image: shubham808/spring-boot-mongo:tagname
+        image: shubham808/spring-boot-mongo:latest
         resources:
           requests:
             cpu: "200m"
