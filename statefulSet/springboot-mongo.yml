@@ -1,49 +1,48 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: spring-boot-mongo
+  name: springappdeployment
   namespace: dev
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: springboot
+      app: springapp
   template:
     metadata:
+      name: springapppod
       labels:
-        app: springboot
+        app: springapp
     spec:
       containers:
-      - name: springboot-ctr
-        image: shubham808/spring-boot-mongo
+      - name: springappcontainer
+        image: dockerhandson/spring-boot-mongo:1
+        ports:
+        - containerPort: 8080
         resources:
           requests:
-            cpu: "200m"
-            memory: "256Mi"
+            cpu: 200m
+            memory: 256Mi
           limits:
-            memory: "300Mi"
-            cpu: "500m"
+            cpu: 300m
+            memory: 256Mi
         env:
         - name: MONGO_DB_USERNAME
           value: devdb
         - name: MONGO_DB_PASSWORD
           value: devdb123
         - name: MONGO_DB_HOSTNAME
-          value: mongo-state-svc.dev.svc.cluster.local
-        ports:
-        - containerPort: 8080
+          value: mongo-state-svc
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: springboot-svc
+  name: springapp
   namespace: dev
 spec:
-  type: NodePort
   selector:
-    app: springboot
+    app: springapp
   ports:
   - port: 80
     targetPort: 8080
-    nodePort: 30033
-
+  type: NodePort
