@@ -16,9 +16,10 @@ spec:
     spec:
       containers:
       - name: springappcontainer
-        image: shubham808/spring-boot-mongo
+        # image: shubham808/spring-boot-mongo
+        image: shubham808/abhicares-backend
         ports:
-        - containerPort: 8080
+        - containerPort: 5000
         resources:
           requests:
             cpu: 200m
@@ -26,13 +27,13 @@ spec:
           limits:
             cpu: 300m
             memory: 256Mi
-        env:
-        - name: MONGO_DB_USERNAME
-          value: devdb
-        - name: MONGO_DB_PASSWORD
-          value: devdb123
-        - name: MONGO_DB_HOSTNAME
-          value: mongo-state-svc
+        # env:
+        # - name: MONGO_DB_USERNAME
+        #   value: devdb
+        # - name: MONGO_DB_PASSWORD
+        #   value: devdb123
+        # - name: MONGO_DB_HOSTNAME
+        #   value: mongo-state-svc.dev.svc.cluster.local
 ---
 apiVersion: v1
 kind: Service
@@ -44,5 +45,6 @@ spec:
     app: springapp
   ports:
   - port: 80
-    targetPort: 8080
+    targetPort: 5000
+    nodePort: 30033
   type: NodePort
