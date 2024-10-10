@@ -24,10 +24,11 @@ spec:
         name: webhost
       containers:
       - name: rh-fe-app-ctr
-        # image: shubham808/retailhub-frontend:0.0.1
-        image: nginx
+        image: shubham808/spring-boot-mongo
+        #image: nginx
         ports:
-        - containerPort: 80
+        - containerPort: 8080
+        #- containerPort: 80
 ---
 apiVersion: v1 
 kind: Service 
@@ -41,5 +42,5 @@ spec:
   ports:
   - protocol: TCP
     port: 80
-    targetPort: 80
+    targetPort: 8080
     nodePort: 30001
