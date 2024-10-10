@@ -7,7 +7,7 @@ metadata:
     app: rh-fe-app
 spec:
   replicas: 1
-  revisionHistoryLimit: 5
+  revisionHistoryLimit: 3
   strategy:
     type: Recreate
   selector: 
@@ -20,7 +20,8 @@ spec:
         app: rh-fe-app
     spec:
       nodeSelector:
-        name: webhost
+        node: worker1
+       # name: webhost
       containers:
       - name: rh-fe-app-ctr
         # image: shubham808/retailhub-frontend:0.0.1
