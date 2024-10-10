@@ -6,7 +6,7 @@ metadata:
   labels: 
     app: rh-fe-app
 spec:
-  replicas: 1
+  replicas: 2
   revisionHistoryLimit: 3
   strategy:
     type: Recreate
@@ -25,9 +25,9 @@ spec:
       containers:
       - name: rh-fe-app-ctr
         # image: shubham808/retailhub-frontend:0.0.1
-        image: dockerhandson/java-web-app:1
+        image: nginx
         ports:
-        - containerPort: 8080
+        - containerPort: 80
 ---
 apiVersion: v1 
 kind: Service 
@@ -41,5 +41,5 @@ spec:
   ports:
   - protocol: TCP
     port: 80
-    targetPort: 8080
+    targetPort: 80
     nodePort: 30001
