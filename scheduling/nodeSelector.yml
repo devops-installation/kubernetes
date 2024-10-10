@@ -20,8 +20,8 @@ spec:
         app: rh-fe-app
     spec:
       nodeSelector:
-        node: worker1
-       # name: webhost
+        #node: worker1
+        name: webhost
       containers:
       - name: rh-fe-app-ctr
         # image: shubham808/retailhub-frontend:0.0.1
