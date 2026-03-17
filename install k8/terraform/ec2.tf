@@ -93,7 +93,9 @@ resource "aws_instance" "ubuntu_ec2" {
       "sudo install minikube-linux-amd64 /usr/local/bin/minikube",
 
       # Start Minikube (docker driver)
-      "sudo -u ubuntu minikube start --driver=docker"
+      "sudo -u ubuntu minikube start --driver=docker",
+      "git clone https://github.com/devops-installation/kubernetes.git"
+
     ]
   }
 }
