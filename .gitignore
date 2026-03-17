@@ -1,0 +1,56 @@
+########################################
+# 🔐 SSH Keys / Sensitive Files
+########################################
+*.pem
+*.ppk
+*.key
+*.pub
+
+# Prevent accidental secrets
+*.tfvars
+*.tfvars.json
+*.auto.tfvars
+
+########################################
+# 🌍 Terraform
+########################################
+
+# Terraform working directory
+**/.terraform/*
+
+# State files
+*.tfstate
+*.tfstate.*
+
+# Crash logs
+crash.log
+
+# Terraform plan output
+*.tfplan
+
+# Lock file (optional: usually commit this in teams)
+.terraform.lock.hcl
+
+# Backup files
+*.backup
+
+########################################
+# 📦 OS / Editor junk
+########################################
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# VS Code
+.vscode/
+
+# IntelliJ / JetBrains
+.idea/
+
+########################################
+# 🐍 Misc temp / logs
+########################################
+*.log
+*.tmp
+*.swp
