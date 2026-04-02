@@ -80,4 +80,5 @@ kubectl version --client --output=yaml
 
 echo
 echo "🎉 Docker, Kind, and kubectl installation complete!"
+git clone https://github.com/devops-installation/kubernetes.git
 shutdown -h +180
