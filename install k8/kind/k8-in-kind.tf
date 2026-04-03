@@ -67,6 +67,10 @@ resource "aws_instance" "ubuntu_ec2" {
       instance_interruption_behavior = "terminate"
     }
   }
+  root_block_device {
+    volume_size = 30
+    volume_type = "gp3"
+  }
 
   tags = {
     Name = "kind-master"

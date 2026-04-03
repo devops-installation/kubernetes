@@ -14,7 +14,7 @@ if ! command -v docker &>/dev/null; then
   sudo apt-get install -y docker.io
 
   echo "👤 Adding current user to docker group..."
-  sudo usermod -aG docker "$USER" && newgrp docker
+  sudo usermod -aG docker "$USER"
 
   echo "✅ Docker installed and user added to docker group."
 else
@@ -81,6 +81,7 @@ kubectl version --client --output=yaml
 echo
 echo "🎉 Docker, Kind, and kubectl installation complete!"
 git clone https://github.com/devops-installation/kubernetes.git
-sudo kind create cluster --name=tws-cluster --config=*/kind/kind-config.yaml # create a cluster
-sudo kubectl cluster-info --context kind-tws-cluster
-shutdown -h +180
+# newgrp docker
+# sudo kind create cluster --name=tws-cluster --config=*/kind/kind-config.yaml # create a cluster
+# sudo kubectl cluster-info --context kind-tws-cluster
+# shutdown -h +180
