@@ -82,6 +82,6 @@ echo
 echo "🎉 Docker, Kind, and kubectl installation complete!"
 git clone https://github.com/devops-installation/kubernetes.git
 # newgrp docker
-# sudo kind create cluster --name=tws-cluster --config=$HOME/kind-config.yaml # create a cluster
-# sudo kubectl cluster-info --context kind-tws-cluster
+sudo kind create cluster --name=tws-cluster --config=/home/ubuntu/kubernetes/kind-config.yaml # create a cluster
+sudo kubectl cluster-info --context kind-tws-cluster
 # shutdown -h +180
