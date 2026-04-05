@@ -1,0 +1,17 @@
+kind: Job
+apiVersion: batch/v1
+metadata:
+  name: demo-job
+  namespace: nginx
+spec:
+  completions: 1
+  parallelism: 1
+  template:
+    metadata:
+      name: demo-job-pod
+    spec:
+      containers:
+      - name: demo-job-ctr
+        image: busybox  #to a run command in a container
+        command: ["echo", "Hello, Kubernetes!"]
+      restartPolicy: Never
