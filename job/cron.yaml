@@ -1,39 +1,43 @@
-kind: CronJob
 apiVersion: batch/v1
+kind: CronJob
 metadata:
   name: demo-cronjob
   namespace: nginx
 spec:
-  schedule: "* * * * *"  # Run every minute
+  schedule: "* * * * *"
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 2
+  failedJobsHistoryLimit: 1
+
   jobTemplate:
     spec:
-      completions: 1
-      parallelism: 1
+      backoffLimit: 3
       template:
-        metadata:
-          name: demo-cronjob-pod
         spec:
+          restartPolicy: OnFailure
+
           containers:
           - name: demo-cronjob-ctr
-            image: busybox  #to a run command in a container
+            image: busybox
             command:
             - /bin/sh
             - -c
-            - >
-              echo Background Job Started at $(date) ;
-              mkdir -p /backups &&
-              mkdir -p /demo-data &&
-              cp -r /demo-data/* /backups/ &&
-              echo Background Job Completed at $(date) ;
+            - |
+              echo "Background Job Started at $(date)"
+              mkdir -p /backups
+              mkdir -p /demo-data
+              cp -r /demo-data/* /backups/ || true
+              echo "Background Job Completed at $(date)"
+
             volumeMounts:
             - name: data-volume
               mountPath: /demo-data
-            - name: backup-volume    
+            - name: backup-volume
               mountPath: /backups
-            restartPolicy: OnFailure
+
           volumes:
           - name: data-volume
-            hostPath: # Use hostPath for demo purposes, in production consider using PersistentVolume   
+            hostPath:
               path: /demo-data
               type: DirectoryOrCreate
           - name: backup-volume
