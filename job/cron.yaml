@@ -1,0 +1,42 @@
+kind: CronJob
+apiVersion: batch/v1
+metadata:
+  name: demo-cronjob
+  namespace: nginx
+spec:
+  schedule: "*/2 * * * *"  # Run every 2 minutes
+  jobTemplate:
+    spec:
+      completions: 1
+      parallelism: 1
+      template:
+        metadata:
+          name: demo-cronjob-pod
+        spec:
+          containers:
+          - name: demo-cronjob-ctr
+            image: busybox  #to a run command in a container
+            command:
+            - /bin/sh
+            - -c
+            - >
+              echo Background Job Started at $(date) ;
+              mkdir -p /backups &&
+              mkdir -p /demo-data &&
+              cp -r /demo-data/* /backups/ &&
+              echo Background Job Completed at $(date) ;
+            volumeMounts:
+            - name: data-volume
+              mountPath: /demo-data
+            - name: backup-volume    
+              mountPath: /backups
+            restartPolicy: OnFailure
+          volumes:
+          - name: data-volume
+            hostPath: # Use hostPath for demo purposes, in production consider using PersistentVolume   
+              path: /demo-data
+              type: DirectoryOrCreate
+          - name: backup-volume
+            hostPath:
+              path: /backups
+              type: DirectoryOrCreate
