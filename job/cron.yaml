@@ -4,7 +4,7 @@ metadata:
   name: demo-cronjob
   namespace: nginx
 spec:
-  schedule: "*/2 * * * *"  # Run every 2 minutes
+  schedule: "*/1* * * *"  # Run every 2 minutes
   jobTemplate:
     spec:
       completions: 1
