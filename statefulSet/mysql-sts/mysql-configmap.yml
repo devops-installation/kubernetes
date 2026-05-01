@@ -6,10 +6,17 @@ metadata:
 data:
   primary.cnf: |
     [mysqld]
-    log-bin
+    server-id=1
+    log-bin=mysql-bin
+    binlog_format=ROW
+    # Semi-sync master settings
+    plugin-load-add=semisync_master.so
     rpl_semi_sync_master_enabled=1
     rpl_semi_sync_master_timeout=1000
   replica.cnf: |
     [mysqld]
-    super-read-only
+    server-id=2
+    # Semi-sync slave settings
+    plugin-load-add=semisync_slave.so
     rpl_semi_sync_slave_enabled=1
+    read_only=1
