@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: configMap
+metadata:
+  name: mysql-config
+  namespace: mysql-lab
+data:
+  primary.cnf: |
+    [mysqld]
+    log-bin
+    rpl_semi_sync_master_enabled=1
+    rpl_semi_sync_master_timeout=1000
+  replica.cnf: |
+    [mysqld]
+    super-read-only
+    rpl_semi_sync_slave_enabled=1

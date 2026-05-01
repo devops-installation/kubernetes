@@ -2,8 +2,9 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: mysql
+  namespace: mysql-lab
 spec:
-  serviceName: "mysql-svc"
+  serviceName: "mysql-headless"
   replicas: 3
   selector:
     matchLabels:
@@ -21,7 +22,7 @@ spec:
           valueFrom:
             secretKeyRef:
               name: mysql-secret
-              key: password
+              key: root-password
         ports:
         - containerPort: 3306
           name: mysql
