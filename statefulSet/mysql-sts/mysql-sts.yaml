@@ -29,6 +29,13 @@ spec:
         volumeMounts:
         - name: data
           mountPath: /var/lib/mysql
+        - name: config
+          mountPath: /etc/mysql/conf.d
+      volumes:
+      - name: config
+        configMap:
+          name: mysql-config
+      
   volumeClaimTemplates:
   - metadata:
       name: data
