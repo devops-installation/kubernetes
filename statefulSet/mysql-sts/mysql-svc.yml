@@ -5,11 +5,10 @@ metadata:
   labels:
     app: mysql
 spec:
-  ClusterIP: None # headless service
-  selector:
-    app: mysql  
   ports:
-  - name: mysql-port
-    port: 3306
-    targetPort: 3306
+  - port: 3306
+    name: mysql # Port name is required for StatefulSets to work properly
+  clusterIP: None # Defines this as a Headless Service
+  selector:
+    app: mysql
     
